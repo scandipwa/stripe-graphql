@@ -1,0 +1,5 @@
+extend type StoreConfig @doc(description: "The type contains information about a store config") {
+    stripe_mode: String @doc(description: "Stripe Mode, either test or live")
+    stripe_test_pk: String @doc(description: "Stripe Test Publishable API Key")
+    stripe_live_pk: String @doc(description: "Stripe Live Publishable API Key")
+}

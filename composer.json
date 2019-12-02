@@ -1,0 +1,31 @@
+{
+    "name": "scandipwa/stripe-graphql",
+    "description": "Serves Stripe publishable keys as configured in admin",
+    "type": "magento2-module",
+    "require": {
+        "magento/magento2-base": "^2.3.2",
+        "stripe/module-payments": "^1.4.0"
+    },
+    "support": {
+        "source": "https://github.com/scandipwa/",
+        "email": "info@scandiweb.com"
+    },
+    "authors": [
+        {
+            "name": "Reinis Mazeiks",
+            "email": "info@scandiweb.com"
+        }
+    ],
+    "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+    ],
+    "autoload": {
+      "files": [
+        "src/registration.php"
+      ],
+      "psr-4": {
+        "ScandiPWA\\StripeGraphQl\\": "src"
+      }
+    }
+}

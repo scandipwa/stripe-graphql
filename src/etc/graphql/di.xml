@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+  ~ ScandiPWA - Progressive Web App for Magento
+  ~
+  ~ Copyright © Scandiweb, Inc. All rights reserved.
+  ~ See LICENSE for license details.
+  ~
+  ~ @license OSL-3.0 (Open Software License ("OSL") v. 3.0)
+  ~ @package scandipwa/stripe-graphql
+  ~ @link https://github.com/scandipwa/stripe-graphql
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider">
+        <arguments>
+            <argument name="extendedConfigData" xsi:type="array">
+                <item name="stripe_mode" xsi:type="string">payment/stripe_payments_basic/stripe_mode</item>
+                <item name="stripe_test_pk" xsi:type="string">payment/stripe_payments_basic/stripe_test_pk</item>
+                <item name="stripe_live_pk" xsi:type="string">payment/stripe_payments_basic/stripe_live_pk</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
