@@ -3,3 +3,13 @@ extend type StoreConfig @doc(description: "The type contains information about a
     stripe_test_pk: String @doc(description: "Stripe Test Publishable API Key")
     stripe_live_pk: String @doc(description: "Stripe Live Publishable API Key")
 }
+
+input StripePaymentsInput {
+    cc_stripejs_token: String!
+    cc_save: Boolean!
+}
+
+input PaymentMethodInput {
+    stripe_payments: StripePaymentsInput
+    @doc(description: "Required input type for Stripe payments")
+}
