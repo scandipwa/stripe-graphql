@@ -1,6 +1,6 @@
 class UrlHandlerPlugin {
-    aroundGetBypassCacheHosts = (originalMember, instance) => ([
-        ...originalMember(),
+    aroundGetBypassCacheHosts = (args, callback, context) => ([
+        ...callback.apply(context, args),
         '(?!^.*stripe)', // Stripe
     ])
 }

@@ -11,13 +11,15 @@ class CheckoutPaymentsPlugin {
     renderStripePayment() {
         const {
             billingAddress,
-            setStripeRef
+            setStripeRef,
+            paymentTotals
         } = this.props;
 
         return (
             <Stripe
               billingAddress={ billingAddress }
               setStripeRef={ setStripeRef }
+              paymentTotals={ paymentTotals  }
             />
         );
     }

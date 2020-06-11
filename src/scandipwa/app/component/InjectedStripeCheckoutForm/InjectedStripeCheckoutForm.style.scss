@@ -11,4 +11,8 @@
 
 .InjectedStripeCheckoutForm {
     padding: 10px 0;
+
+    &-ButtonPay {
+        padding-bottom: 25px;
+    }
 }

@@ -9,7 +9,7 @@
  * @package scandipwa/base-theme
  * @link https://github.com/scandipwa/base-theme
  */
-import { CardElement, injectStripe } from 'react-stripe-elements';
+import { CardElement, PaymentRequestButtonElement } from 'react-stripe-elements';
 import PropTypes from 'prop-types';
 import './InjectedStripeCheckoutForm.style';
 
@@ -166,15 +166,36 @@ export class InjectedStripeCheckoutForm extends ExtensiblePureComponent {
         };
     }
 
+    renderButtonPay() {
+        const { paymentRequest, buttonPayEnabled } = this.props;
+
+        if (!buttonPayEnabled) {
+            return null;
+        }
+
+        return (
+            <div block="InjectedStripeCheckoutForm" elem="ButtonPay">
+                <PaymentRequestButtonElement
+                  paymentRequest={ paymentRequest }
+                />
+            </div>
+        );
+    }
+
+    renderCardPayment() {
+        return (
+            <CardElement hidePostalCode />
+        );
+    }
+
     render() {
         return (
             <div block="InjectedStripeCheckoutForm">
-                <CardElement hidePostalCode />
+                { this.renderButtonPay() }
+                { this.renderCardPayment() }
             </div>
         );
     }
 }
 
-export default injectStripe(
-    middleware(InjectedStripeCheckoutForm, 'Component/InjectedStripeCheckoutForm/Component')
-);
+export default middleware(InjectedStripeCheckoutForm, 'Component/InjectedStripeCheckoutForm/Component');

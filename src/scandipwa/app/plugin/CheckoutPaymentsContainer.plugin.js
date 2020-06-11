@@ -8,15 +8,15 @@ class CheckoutPaymentsContainerPlugin {
 
     aroundDataMap = (originalMember, instance) => ({
         ...originalMember,
-        [STRIPE]: this.getStripeData.bind(instance),
+        [STRIPE]: this.getStripeData.bind(this, instance),
     })
 
     setStripeRef(ref) {
         this.stripeRef = ref;
     }
 
-    getStripeData() {
-        return { asyncData: this.stripeRef.submit() };
+    getStripeData = (instance) => {
+        return { asyncData: instance.stripeRef.submit() };
     }
 }
 

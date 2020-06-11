@@ -48,7 +48,8 @@ export class Stripe extends ExtensiblePureComponent {
         const {
             setStripeRef,
             stripeKey,
-            billingAddress
+            billingAddress,
+            paymentTotals
         } = this.props;
 
         return (
@@ -57,6 +58,7 @@ export class Stripe extends ExtensiblePureComponent {
                     <InjectedStripeCheckoutForm
                       onRef={ setStripeRef }
                       billingAddress={ billingAddress }
+                      paymentTotals={ paymentTotals }
                     />
                 </Elements>
             </StripeProvider>

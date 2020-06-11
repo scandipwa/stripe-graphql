@@ -1,3 +1,17 @@
+type Mutation {
+    createPaymentIntent(input: CreateIntentInput!): PaymentIntent
+    @doc(description: "Create a payment intent manually")
+    @resolver(class: "\\ScandiPWA\\StripeGraphQl\\Model\\Resolver\\CreatePaymentIntent")
+}
+
+input CreateIntentInput {
+    guest_cart_id: String
+}
+
+type PaymentIntent {
+    intent_client_secret: String
+}
+
 extend type StoreConfig @doc(description: "The type contains information about a store config") {
     stripe_mode: String @doc(description: "Stripe Mode, either test or live")
     stripe_test_pk: String @doc(description: "Stripe Test Publishable API Key")
