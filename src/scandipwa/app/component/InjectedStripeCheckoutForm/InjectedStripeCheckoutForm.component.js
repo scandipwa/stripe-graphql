@@ -9,7 +9,8 @@
  * @package scandipwa/base-theme
  * @link https://github.com/scandipwa/base-theme
  */
-import { CardElement, PaymentRequestButtonElement } from 'react-stripe-elements';
+import { CardElement } from 'react-stripe-elements';
+import StripeOneClickPayment from '../StripeOneclickPayment';
 import PropTypes from 'prop-types';
 import './InjectedStripeCheckoutForm.style';
 
@@ -166,33 +167,11 @@ export class InjectedStripeCheckoutForm extends ExtensiblePureComponent {
         };
     }
 
-    renderButtonPay() {
-        const { paymentRequest, buttonPayEnabled } = this.props;
-
-        if (!buttonPayEnabled) {
-            return null;
-        }
-
-        return (
-            <div block="InjectedStripeCheckoutForm" elem="ButtonPay">
-                <PaymentRequestButtonElement
-                  paymentRequest={ paymentRequest }
-                />
-            </div>
-        );
-    }
-
-    renderCardPayment() {
-        return (
-            <CardElement hidePostalCode />
-        );
-    }
-
     render() {
         return (
             <div block="InjectedStripeCheckoutForm">
-                { this.renderButtonPay() }
-                { this.renderCardPayment() }
+                <StripeOneClickPayment { ...this.props } />
+                <CardElement hidePostalCode />
             </div>
         );
     }

@@ -12,14 +12,16 @@ class CheckoutPaymentsPlugin {
         const {
             billingAddress,
             setStripeRef,
-            paymentTotals
+            paymentTotals,
+            onPaymentMethod
         } = this.props;
 
         return (
             <Stripe
               billingAddress={ billingAddress }
               setStripeRef={ setStripeRef }
-              paymentTotals={ paymentTotals  }
+              paymentTotals={ paymentTotals }
+              onPaymentMethod={ onPaymentMethod }
             />
         );
     }
