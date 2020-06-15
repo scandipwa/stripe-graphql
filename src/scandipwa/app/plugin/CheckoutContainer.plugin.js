@@ -28,12 +28,7 @@ const {
 const config = {
     'Component/Checkout/Container': {
         'member-function': {
-            '_handlePaymentError': [
-                {
-                    position: 100,
-                    implementation: around_handlePaymentError
-                }
-            ]
+            '_handlePaymentError': around_handlePaymentError
         }
     }
 };

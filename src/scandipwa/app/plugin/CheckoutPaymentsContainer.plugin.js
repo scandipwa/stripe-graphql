@@ -50,18 +50,8 @@ const {
 const config = {
     'Component/CheckoutPayments/Container': {
         'member-property': {
-            'containerFunctions': [
-                {
-                    position: 100,
-                    implementation: aroundContainerFunctions
-                }
-            ],
-            'dataMap': [
-                {
-                    position: 100,
-                    implementation: aroundDataMap
-                }
-            ]
+            'containerFunctions': aroundContainerFunctions,
+            'dataMap': aroundDataMap
         }
     }
 };

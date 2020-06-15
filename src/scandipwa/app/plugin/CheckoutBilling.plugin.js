@@ -25,12 +25,7 @@ const {
 const config = {
     'Component/CheckoutBilling/Component': {
         'member-function': {
-            'renderPayments': [
-                {
-                    position: 100,
-                    implementation: aroundRenderPayments
-                }
-            ]
+            'renderPayments': aroundRenderPayments
         }
     }
 };

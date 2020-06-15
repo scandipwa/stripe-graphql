@@ -11,12 +11,7 @@ const {
 
 const config = {
     'SW/Handler/UrlHandler/getBypassCacheHosts': {
-        'function': [
-            {
-                position: 100,
-                implementation: aroundGetBypassCacheHosts
-            }
-        ]
+        'function': aroundGetBypassCacheHosts
     }
 };
 

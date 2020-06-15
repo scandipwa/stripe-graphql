@@ -23,12 +23,7 @@ const {
 const config = {
     'Route/Checkout/Component': {
         'member-function': {
-            'renderBillingStep': [
-                {
-                    position: 100,
-                    implementation: aroundRenderBillingStep
-                }
-            ]
+            'renderBillingStep': aroundRenderBillingStep
         }
     }
 };

@@ -32,12 +32,7 @@ const {
 const config = {
     'Component/CheckoutBilling/Container': {
         'member-function': {
-            '_getPaymentData': [
-                {
-                    position: 100,
-                    implementation: around_getPaymentData
-                }
-            ]
+            '_getPaymentData': around_getPaymentData
         }
     }
 };

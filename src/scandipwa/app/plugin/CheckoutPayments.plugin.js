@@ -34,12 +34,7 @@ const {
 const config = {
     'Component/CheckoutPayments/Component': {
         'member-property': {
-            'paymentRenderMap': [
-                {
-                    position: 100,
-                    implementation: aroundPaymentRenderMap
-                }
-            ]
+            'paymentRenderMap': aroundPaymentRenderMap
         }
     }
 };
