@@ -2,6 +2,7 @@ type Mutation {
     createPaymentIntent(input: CreateIntentInput!): PaymentIntent
     @doc(description: "Create a payment intent manually")
     @resolver(class: "\\ScandiPWA\\StripeGraphQl\\Model\\Resolver\\CreatePaymentIntent")
+    @deprecated(reason: "Payment handling logic has been moved entirely to BE, no need to create payment intent separately.")
 }
 
 input CreateIntentInput {
