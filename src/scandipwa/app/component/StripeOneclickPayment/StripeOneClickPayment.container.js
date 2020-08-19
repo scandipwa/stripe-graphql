@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
-import { CartDispatcher } from 'Store/Cart';
-import { fetchMutation } from 'Util/Request';
-import { showNotification } from 'Store/Notification';
-import StripeQuery from '../../query/Stripe.query';
+
+import { showNotification } from 'Store/Notification/Notification.action';
+
 import StripeOneClickPayment from './StripeOneClickPayment.component';
 
-export const mapStateToProps = (state) => ({})
+/** @namespace ScandiPWA/StripeGraphql/Component/StripeOneclickPayment/Container/mapStateToProps */
+export const mapStateToProps = state => ({});
 
-export const mapDispatchToProps = (dispatch) => ({
+/** @namespace ScandiPWA/StripeGraphql/Component/StripeOneclickPayment/Container/mapDispatchToProps */
+export const mapDispatchToProps = dispatch => ({
     showNotification: (type, message) => dispatch(showNotification(type, message))
-})
+});
 
-export class StripeOneClickPaymentContainer extends ExtensiblePureComponent {
+/** @namespace ScandiPWA/StripeGraphql/Component/StripeOneclickPayment/Container */
+export class StripeOneClickPaymentContainer extends PureComponent {
     state = {
         buttonPayEnabled: false
     };
@@ -35,7 +37,7 @@ export class StripeOneClickPaymentContainer extends ExtensiblePureComponent {
             'xof'
         ].includes(currency.toLowerCase());
 
-        return grand_total * (isZeroDecimal(quote_currency_code) ? 1 : 100)
+        return Math.floor(grand_total * (isZeroDecimal(quote_currency_code) ? 1 : 100));
     }
 
     generatePaymentRequest() {
@@ -54,8 +56,8 @@ export class StripeOneClickPaymentContainer extends ExtensiblePureComponent {
             currency: quote_currency_code.toLowerCase(),
             total: {
                 label: 'Get your goods!',
-                amount: this.getOrderAmount(),
-            },
+                amount: this.getOrderAmount()
+            }
         });
 
         return paymentRequest;
@@ -64,6 +66,7 @@ export class StripeOneClickPaymentContainer extends ExtensiblePureComponent {
     componentDidMount() {
         this.paymentRequest = this.generatePaymentRequest();
         this.paymentRequest.canMakePayment().then(
+            /** @namespace ScandiPWA/StripeGraphql/Component/StripeOneclickPayment/Container/canMakePaymentThen */
             can => this.setState(() => ({ buttonPayEnabled: !!can }))
         );
 
@@ -103,9 +106,4 @@ export class StripeOneClickPaymentContainer extends ExtensiblePureComponent {
     }
 }
 
-export default connect(
-    middleware(mapStateToProps, 'ScandiPWA/StripeGraphQl/Component/StripeOneClickPayment/Container/mapStateToProps'),
-    middleware(mapDispatchToProps, 'ScandiPWA/StripeGraphQl/Component/StripeOneClickPayment/Container/mapDispatchToProps')
-)(
-    middleware(StripeOneClickPaymentContainer, 'ScandiPWA/StripeGraphQl/Component/StripeOneClickPayment/Container')
-)
+export default connect(mapStateToProps, mapDispatchToProps)(StripeOneClickPaymentContainer);

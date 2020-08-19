@@ -1,18 +1,20 @@
-import { ONE_MONTH_IN_SECONDS } from 'Util/Request/QueryDispatcher';
 import { Field, prepareQuery } from 'Util/Query';
 import { executeGet } from 'Util/Request';
+import { ONE_MONTH_IN_SECONDS } from 'Util/Request/QueryDispatcher';
+
 import Stripe from './Stripe.component';
 
 export const STRIPE_MODE_TEST = 'test';
 
-export class StripeContainer extends ExtensiblePureComponent {
+/** @namespace ScandiPWA/StripeGraphql/Component/Stripe/Container */
+export class StripeContainer extends PureComponent {
     state = {
         isLoading: true,
         storeConfig: {}
     };
 
-    constructor(props) {
-        super(props);
+    __construct(props) {
+        super.__construct(props);
 
         if (window.Stripe) {
             this._requestStripeData();
@@ -39,7 +41,9 @@ export class StripeContainer extends ExtensiblePureComponent {
             ]);
 
         executeGet(prepareQuery([query]), 'StripeContainer', ONE_MONTH_IN_SECONDS).then(
+            /** @namespace ScandiPWA/StripeGraphql/Component/Stripe/Container/executeGetThen */
             ({ storeConfig }) => this.setState({ isLoading: false, storeConfig }),
+            /** @namespace ScandiPWA/StripeGraphql/Component/Stripe/Container/executeGetThen */
             () => this.setState({ isLoading: false })
         );
     }
@@ -69,4 +73,4 @@ export class StripeContainer extends ExtensiblePureComponent {
     }
 }
 
-export default middleware(StripeContainer, 'Component/Stripe/Container');
+export default StripeContainer;

@@ -1,6 +1,6 @@
 export const STRIPE_AUTH_REQUIRED = 'Authentication Required: ';
 
-class CheckoutContainerPlugin {
+export class CheckoutContainerPlugin {
     around_handlePaymentError = (args, callback, instance) => {
         const [error, paymentInformation] = args;
 
@@ -18,17 +18,17 @@ class CheckoutContainerPlugin {
         } else {
             return callback.apply(instance, args);
         }
-    }
+    };
 }
 
 const {
     around_handlePaymentError
 } = new CheckoutContainerPlugin();
 
-const config = {
+export const config = {
     'Component/Checkout/Container': {
         'member-function': {
-            '_handlePaymentError': around_handlePaymentError
+            _handlePaymentError: around_handlePaymentError
         }
     }
 };

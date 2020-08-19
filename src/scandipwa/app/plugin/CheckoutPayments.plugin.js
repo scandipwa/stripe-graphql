@@ -2,7 +2,7 @@ import Stripe from '../component/Stripe';
 
 export const STRIPE = 'stripe_payments';
 
-class CheckoutPaymentsPlugin {
+export class CheckoutPaymentsPlugin {
     aroundPaymentRenderMap = (originalMember, instance) => ({
         ...originalMember,
         [STRIPE]: this.renderStripePayment.bind(instance)
@@ -31,10 +31,10 @@ const {
     aroundPaymentRenderMap
 } = new CheckoutPaymentsPlugin();
 
-const config = {
+export const config = {
     'Component/CheckoutPayments/Component': {
         'member-property': {
-            'paymentRenderMap': aroundPaymentRenderMap
+            paymentRenderMap: aroundPaymentRenderMap
         }
     }
 };

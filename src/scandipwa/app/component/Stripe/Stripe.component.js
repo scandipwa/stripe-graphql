@@ -1,10 +1,14 @@
-import PropTypes from 'prop-types';
-import { StripeProvider, Elements } from 'react-stripe-elements';
-import InjectedStripeCheckoutForm from '../InjectedStripeCheckoutForm';
-import Loader from 'Component/Loader';
 import './Stripe.style';
 
-export class Stripe extends ExtensiblePureComponent {
+import PropTypes from 'prop-types';
+import { Elements, StripeProvider } from 'react-stripe-elements';
+
+import Loader from 'Component/Loader';
+
+import InjectedStripeCheckoutForm from '../InjectedStripeCheckoutForm';
+
+/** @namespace ScandiPWA/StripeGraphql/Component/Stripe/Component */
+export class Stripe extends PureComponent {
     static propTypes = {
         isLoading: PropTypes.bool,
         stripeKey: PropTypes.string,
@@ -93,4 +97,4 @@ export class Stripe extends ExtensiblePureComponent {
     }
 }
 
-export default middleware(Stripe, 'Component/Stripe/Component');
+export default Stripe;

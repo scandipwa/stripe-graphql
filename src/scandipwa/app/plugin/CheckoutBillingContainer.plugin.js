@@ -1,6 +1,6 @@
-import { STRIPE } from './CheckoutPayments.plugin'
+import { STRIPE } from './CheckoutPayments.plugin';
 
-class CheckoutBillingContainerPlugin {
+export class CheckoutBillingContainerPlugin {
     around_getPaymentData = (args, callback, instance) => {
         const [asyncData] = args;
         const { paymentMethod: code } = instance.state;
@@ -19,20 +19,20 @@ class CheckoutBillingContainerPlugin {
                 },
                 handleAuthorization
             };
-        } else {
-            return callback.apply(instance, args);
         }
-    }
+
+        return callback.apply(instance, args);
+    };
 }
 
 const {
     around_getPaymentData
 } = new CheckoutBillingContainerPlugin();
 
-const config = {
+export const config = {
     'Component/CheckoutBilling/Container': {
         'member-function': {
-            '_getPaymentData': around_getPaymentData
+            _getPaymentData: around_getPaymentData
         }
     }
 };

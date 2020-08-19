@@ -1,6 +1,6 @@
 import { cloneElement } from 'react';
 
-class CheckoutBillingContainerPlugin {
+export class CheckoutBillingPlugin {
     aroundRenderPayments = (args, callback, instance) => {
         const {
             paymentTotals
@@ -15,17 +15,17 @@ class CheckoutBillingContainerPlugin {
             originalElement,
             additionalProps
         );
-    }
+    };
 }
 
 const {
     aroundRenderPayments
-} = new CheckoutBillingContainerPlugin();
+} = new CheckoutBillingPlugin();
 
-const config = {
+export const config = {
     'Component/CheckoutBilling/Component': {
         'member-function': {
-            'renderPayments': aroundRenderPayments
+            renderPayments: aroundRenderPayments
         }
     }
 };

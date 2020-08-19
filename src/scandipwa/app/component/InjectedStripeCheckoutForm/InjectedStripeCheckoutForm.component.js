@@ -9,15 +9,18 @@
  * @package scandipwa/base-theme
  * @link https://github.com/scandipwa/base-theme
  */
-import { CardElement } from 'react-stripe-elements';
-import StripeOneClickPayment from '../StripeOneclickPayment';
-import PropTypes from 'prop-types';
 import './InjectedStripeCheckoutForm.style';
+
+import PropTypes from 'prop-types';
+import { CardElement } from 'react-stripe-elements';
+
+import StripeOneClickPayment from '../StripeOneclickPayment';
 
 /**
  * @class InjectedStripeCheckoutForm
+ * @namespace ScandiPWA/StripeGraphql/Component/InjectedStripeCheckoutForm/Component
  */
-export class InjectedStripeCheckoutForm extends ExtensiblePureComponent {
+export class InjectedStripeCheckoutForm extends PureComponent {
      static propTypes = {
          stripe: PropTypes.oneOfType([
              PropTypes.object,
@@ -54,8 +57,8 @@ export class InjectedStripeCheckoutForm extends ExtensiblePureComponent {
         email: null
     };
 
-    constructor(props) {
-        super(props);
+    __construct(props) {
+        super.__construct(props);
 
         this.state = { complete: false };
         this.submit = this.submit.bind(this);
@@ -102,21 +105,26 @@ export class InjectedStripeCheckoutForm extends ExtensiblePureComponent {
             stripe: { retrievePaymentIntent, handleCardAction, handleCardPayment }
         } = this.props;
 
-        retrievePaymentIntent(secret).then((result) => {
-            const { paymentIntent: { status, confirmation_method } } = result;
+        retrievePaymentIntent(secret).then(
+            /** @namespace ScandiPWA/StripeGraphql/Component/InjectedStripeCheckoutForm/Component/retrievePaymentIntentThen */
+            (result) => {
+                const { paymentIntent: { status, confirmation_method } } = result;
 
-            if (['requires_action', 'requires_source_action'].includes(status)) {
-                if (confirmation_method === 'manual') {
-                    handleCardAction(secret).then(
-                        response => this.handlePostAuthorization(response, savePaymentInformation, paymentInformation)
-                    );
-                } else {
-                    handleCardPayment(secret).then(
-                        response => this.handlePostAuthorization(response, savePaymentInformation, paymentInformation)
-                    );
+                if (['requires_action', 'requires_source_action'].includes(status)) {
+                    if (confirmation_method === 'manual') {
+                        handleCardAction(secret).then(
+                        /** @namespace ScandiPWA/StripeGraphql/Component/InjectedStripeCheckoutForm/Component/handleCardActionThen */
+                            response => this.handlePostAuthorization(response, savePaymentInformation, paymentInformation)
+                        );
+                    } else {
+                        handleCardPayment(secret).then(
+                        /** @namespace ScandiPWA/StripeGraphql/Component/InjectedStripeCheckoutForm/Component/handleCardPaymentThen */
+                            response => this.handlePostAuthorization(response, savePaymentInformation, paymentInformation)
+                        );
+                    }
                 }
             }
-        });
+        );
     }
 
     /**
@@ -177,4 +185,4 @@ export class InjectedStripeCheckoutForm extends ExtensiblePureComponent {
     }
 }
 
-export default middleware(InjectedStripeCheckoutForm, 'Component/InjectedStripeCheckoutForm/Component');
+export default InjectedStripeCheckoutForm;

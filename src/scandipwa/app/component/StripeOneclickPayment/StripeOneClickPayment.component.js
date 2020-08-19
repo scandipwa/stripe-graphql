@@ -1,7 +1,8 @@
 import { PaymentRequestButtonElement } from 'react-stripe-elements';
 
 
-export class StripeOneClickPayment extends ExtensiblePureComponent {
+/** @namespace ScandiPWA/StripeGraphql/Component/StripeOneclickPayment/Component */
+export class StripeOneClickPayment extends PureComponent {
     render() {
         const { paymentRequest } = this.props;
 
@@ -15,4 +16,4 @@ export class StripeOneClickPayment extends ExtensiblePureComponent {
     }
 }
 
-export default middleware(StripeOneClickPayment, 'ScandiPWA/StripeGraphQl/Component/StripeOneClickPayment/Component');
+export default StripeOneClickPayment;

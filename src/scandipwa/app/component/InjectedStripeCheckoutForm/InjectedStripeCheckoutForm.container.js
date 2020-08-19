@@ -14,16 +14,18 @@ import { injectStripe } from 'react-stripe-elements';
 
 import InjectedStripeCheckoutForm from './InjectedStripeCheckoutForm.component';
 
+/** @namespace ScandiPWA/StripeGraphql/Component/InjectedStripeCheckoutForm/Container/mapDispatchToProps */
 export const mapDispatchToProps = dispatch => ({
     showNotification: (type, message) => dispatch(showNotification(type, message))
 });
 
+/** @namespace ScandiPWA/StripeGraphql/Component/InjectedStripeCheckoutForm/Container/mapStateToProps */
 // eslint-disable-next-line no-unused-vars
 export const mapStateToProps = state => ({});
 
 export default connect(
-    middleware(mapStateToProps, 'ScandiPWA/StripeGraphQl/Component/InjectedStripeCheckoutForm/Container/mapStateToProps'),
-    middleware(mapDispatchToProps, 'ScandiPWA/StripeGraphQl/Component/InjectedStripeCheckoutForm/Container/mapDispatchToProps')
+    mapStateToProps,
+    mapDispatchToProps
 )(
     injectStripe(InjectedStripeCheckoutForm)
 );

@@ -1,17 +1,18 @@
-import { STRIPE } from './CheckoutPayments.plugin';
-import { BILLING_STEP } from 'Route/Checkout/Checkout.component';
+import { BILLING_STEP } from 'Route/Checkout/Checkout.config';
 
-class CheckoutPaymentsContainerPlugin {
+import { STRIPE } from './CheckoutPayments.plugin';
+
+export class CheckoutPaymentsContainerPlugin {
     aroundContainerFunctions = (originalMember, instance) => ({
         ...originalMember,
         setStripeRef: this.setStripeRef.bind(instance),
         onPaymentMethod: this.onPaymentMethod.bind(instance)
-    })
+    });
 
     aroundDataMap = (originalMember, instance) => ({
         ...originalMember,
-        [STRIPE]: this.getStripeData.bind(instance),
-    })
+        [STRIPE]: this.getStripeData.bind(instance)
+    });
 
     getStripeData() {
         // Check if one-click-payment
@@ -47,11 +48,11 @@ const {
     aroundDataMap
 } = new CheckoutPaymentsContainerPlugin();
 
-const config = {
+export const config = {
     'Component/CheckoutPayments/Container': {
         'member-property': {
-            'containerFunctions': aroundContainerFunctions,
-            'dataMap': aroundDataMap
+            containerFunctions: aroundContainerFunctions,
+            dataMap: aroundDataMap
         }
     }
 };

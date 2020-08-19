@@ -1,17 +1,17 @@
-class UrlHandlerPlugin {
+export class UrlHandlerPlugin {
     aroundGetBypassCacheHosts = (args, callback, context) => ([
         ...callback.apply(context, args),
-        '(?!^.*stripe)', // Stripe
-    ])
+        '(?!^.*stripe)' // Stripe
+    ]);
 }
 
 const {
     aroundGetBypassCacheHosts
 } = new UrlHandlerPlugin();
 
-const config = {
+export const config = {
     'SW/Handler/UrlHandler/getBypassCacheHosts': {
-        'function': aroundGetBypassCacheHosts
+        function: aroundGetBypassCacheHosts
     }
 };
 

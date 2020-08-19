@@ -14,8 +14,9 @@ import { Field } from 'Util/Query';
 /**
  * Slider Query
  * @class Slider
+ * @namespace ScandiPWA/StripeGraphql/Query
  */
-export class StripeQuery extends ExtensibleClass {
+export class StripeQuery {
     createPaymentIntent(options) {
         return new Field('createPaymentIntent')
             .addArgument('input', 'CreateIntentInput!', options)
@@ -23,4 +24,4 @@ export class StripeQuery extends ExtensibleClass {
     }
 }
 
-export default new (middleware(StripeQuery, 'Scandipwa/StripeGraphql/Query/Stripe'))();
+export default new (StripeQuery)();
