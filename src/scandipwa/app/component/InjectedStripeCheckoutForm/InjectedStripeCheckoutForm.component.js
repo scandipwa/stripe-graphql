@@ -105,19 +105,19 @@ export class InjectedStripeCheckoutForm extends PureComponent {
             stripe: { retrievePaymentIntent, handleCardAction, handleCardPayment }
         } = this.props;
 
-        retrievePaymentIntent(secret).then(
+        return retrievePaymentIntent(secret).then(
             /** @namespace ScandiPWA/StripeGraphql/Component/InjectedStripeCheckoutForm/Component/retrievePaymentIntentThen */
             (result) => {
                 const { paymentIntent: { status, confirmation_method } } = result;
 
                 if (['requires_action', 'requires_source_action'].includes(status)) {
                     if (confirmation_method === 'manual') {
-                        handleCardAction(secret).then(
+                        return handleCardAction(secret).then(
                         /** @namespace ScandiPWA/StripeGraphql/Component/InjectedStripeCheckoutForm/Component/handleCardActionThen */
                             response => this.handlePostAuthorization(response, savePaymentInformation, paymentInformation)
                         );
                     } else {
-                        handleCardPayment(secret).then(
+                        return handleCardPayment(secret).then(
                         /** @namespace ScandiPWA/StripeGraphql/Component/InjectedStripeCheckoutForm/Component/handleCardPaymentThen */
                             response => this.handlePostAuthorization(response, savePaymentInformation, paymentInformation)
                         );

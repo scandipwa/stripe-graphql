@@ -1,8 +1,21 @@
 export const STRIPE_AUTH_REQUIRED = 'Authentication Required: ';
 
 export class CheckoutContainerPlugin {
-    around_handlePaymentError = (args, callback, instance) => {
-        const [error, paymentInformation] = args;
+    preservePaymentInformation = (args, callback) => {
+        const [paymentInformation] = args;
+
+        this.paymentInformation = paymentInformation;
+
+        return callback(...args);
+    };
+
+    stripeAuthorization = (args, callback, instance) => {
+        const [error] = args;
+        const { paymentInformation } = this;
+
+        if (!paymentInformation) {
+            return callback(...args);
+        }
 
         const [{ debugMessage: message = '' }] = error;
         const { paymentMethod: { handleAuthorization } } = paymentInformation;
@@ -13,22 +26,28 @@ export class CheckoutContainerPlugin {
             handleAuthorization(
                 paymentInformation,
                 secret,
-                paymentInformation => instance.savePaymentInformation(paymentInformation)
-            );
+                newPaymentInformation => instance.savePaymentInformation(newPaymentInformation)
+            ).then((success) => {
+                if (!success) {
+                    instance.setState({ isLoading: false });
+                }
+            });
         } else {
-            return callback.apply(instance, args);
+            return callback(...args);
         }
     };
 }
 
 const {
-    around_handlePaymentError
+    stripeAuthorization,
+    preservePaymentInformation
 } = new CheckoutContainerPlugin();
 
 export const config = {
-    'Component/Checkout/Container': {
+    'Route/Checkout/Container': {
         'member-function': {
-            _handlePaymentError: around_handlePaymentError
+            _handleError: stripeAuthorization,
+            savePaymentInformation: preservePaymentInformation
         }
     }
 };
