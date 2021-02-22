@@ -10,6 +10,12 @@
   ~ @link https://github.com/scandipwa/stripe-graphql
   -->
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="ScandiPWA_StripeGraphQl"/>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="ScandiPWA_StripeGraphQl">
+        <sequence>
+            <module name="StripeIntegration_Payments"/>
+            <module name="ScandiPWA_StoreGraphQl"/>
+        </sequence>
+    </module>
 </config>
