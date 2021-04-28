@@ -6,25 +6,26 @@ Stripe is implemented via stripe `react-stripe-elements` component. In the check
 
 ![image](https://user-images.githubusercontent.com/29531824/69980856-c1628580-1539-11ea-9a9d-cf24a53c766e.png)
 
-**To install**:
+## Installation:
 
-> **Note 2**: it is recommended to install from Magento Marketplace - bellow is the manual instruction
+> **Note 2**: it is recommended to purchase and install from Magento Marketplace to avoid having sudden bugs. We will cover this installation process
 
-1. Go to https://stripe.com/docs/plugins/magento/install 
-2. Click on "Download" button, get the Stripe module
-3. Create new folder in the Magento 2 root (if using [scandipwa-base](https://github.com/scandipwa/scandipwa-base): `src` folder) call it `localmodules`.
-3. Extract archive `app/code/StripeIntegration` folder content to newly created folder.
-4. Add folder to composer repository list: `app` container: `composer config repositories.stripe path localmodules/Payments`
-5. Require the module: `composer require stripe/module-payments`
-6. Require ScaniPWA GraphQL definition extension: `composer require scandipwa/stripe-graphql`
-7. Update the M2 modules: `magento se:up`
+**Heads-up!** Ensure you have purchased the module on your current Magento account (`echo $COMPOSER_AUTH`)! Since Stripe removed packages from packagist, this is the only way to proceed!!
+
+1. Place an order for the module through the [Magento Marketplace](https://marketplace.magento.com/stripe-stripe-payments.html)
+2. Create new folder in the Magento 2 root (if using [scandipwa-base](https://github.com/scandipwa/scandipwa-base): `src` folder) call it `localmodules`.
+3. Require ScaniPWA GraphQL definition extension: `composer require scandipwa/stripe-graphql`
+4. Update the M2 modules: `magento se:up`
 
 **To configure**:
 1. Go to https://dashboard.stripe.com/ - signup
 2. Go to *Developer > Api Keys*, copy credentials
 3. Go to *Store > Configuration > Sales > Payment Methods > Stripe* and enter credentials from above
 
-**Technical details**:
+**Manual installation**:
+For manual installation please follow the [Install the module manually](https://stripe.com/docs/plugins/magento/install#manual) guide from Stripe. Please then repeat all steps from the guide hereinbefore!
+
+## Technical details:
 
 Extends the Magento store config to include the publishable Stripe API keys and the current mode. These can be configured in the Magento Admin panel, in Stores > Settings: Configuration > Sales: Payment Methods > Stripe > Basic Settings
 
