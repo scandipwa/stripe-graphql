@@ -10,6 +10,8 @@
  * @link https://github.com/scandipwa/stripe-graphql
  */
 
-use Magento\Framework\Component\ComponentRegistrar;
-
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'ScandiPWA_StripeGraphQl', __DIR__);
+\Magento\Framework\Component\ComponentRegistrar::register(
+    \Magento\Framework\Component\ComponentRegistrar::MODULE,
+    'ScandiPWA_StripeGraphQl',
+    __DIR__
+);

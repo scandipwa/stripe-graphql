@@ -20,4 +20,12 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\QuoteGraphQl\Model\Cart\Payment\AdditionalDataProviderPool">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="stripe_payments" xsi:type="object">ScandiPWA\StripeGraphQl\Model\StripeAdditionalDataProvider</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
