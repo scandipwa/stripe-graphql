@@ -1,4 +1,5 @@
 # Stripe extension for ScandiPWA
+Heads up! This extension installation will only make you halfway to success. Supplementing it with a [Stripe extension front-end](https://github.com/scandipwa/stripe-payments) is a **must**
 
 > **Note 1**: In order to get this payment method, you need to install additional extensions.
 
