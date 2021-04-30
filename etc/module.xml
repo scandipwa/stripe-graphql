@@ -14,6 +14,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="ScandiPWA_StripeGraphQl">
         <sequence>
+            <module name="ScandiPWA_Router"/>
             <module name="StripeIntegration_Payments"/>
             <module name="ScandiPWA_StoreGraphQl"/>
         </sequence>
