@@ -1,5 +1,4 @@
 {
-    "version": "3.0.101",
     "name": "scandipwa/stripe-graphql",
     "description": "Serves Stripe publishable keys as configured in admin",
     "type": "magento2-module",
