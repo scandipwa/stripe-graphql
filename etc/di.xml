@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+  ~ ScandiPWA - Progressive Web App for Magento
+  ~
+  ~ Copyright © Scandiweb, Inc. All rights reserved.
+  ~ See LICENSE for license details.
+  ~
+  ~ @license OSL-3.0 (Open Software License ("OSL") v. 3.0)
+  ~ @package scandipwa/stripe-graphql
+  ~ @link https://github.com/scandipwa/stripe-graphql
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="ScandiPWA\Router\Controller\ConfigurableRouter" type="ScandiPWA\Router\Controller\Router">
+        <arguments>
+            <argument name="ignoredURLs" xsi:type="array">
+                <item name="stripeWebhooks" xsi:type="string">^/stripe/webhooks.*</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ScandiPWA\Route717\Controller\ConfigurableRouter" type="ScandiPWA\Route717\Controller\Router">
+        <arguments>
+            <argument name="ignoredURLs" xsi:type="array">
+                <item name="stripeWebhooks" xsi:type="string">^/stripe/webhooks.*</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Checkout\Model\GuestPaymentInformationManagement">
+        <plugin name="set_session_quote_before_save_payment_information_guest"
+                type="ScandiPWA\StripeGraphQl\Plugin\GuestPaymentInformationManagementPlugin"
+        />
+    </type>
+    <type name="Magento\Checkout\Model\PaymentInformationManagement">
+        <plugin name="set_session_quote_before_save_payment_information"
+                type="ScandiPWA\StripeGraphQl\Plugin\PaymentInformationManagementPlugin"
+        />
+    </type>
+    <preference for="StripeIntegration\Payments\Plugin\Sales\Model\Service\OrderService"
+                type="ScandiPWA\StripeGraphQl\Plugin\Sales\Model\Service\OrderService"/>
+</config>

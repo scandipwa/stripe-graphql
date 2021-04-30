@@ -1,14 +1,16 @@
-type StoreConfig @doc(description: "The type contains information about a store config") {
-    stripe_mode: String @doc(description: "Stripe Mode, either test or live")
-    stripe_test_pk: String @doc(description: "Stripe Test Publishable API Key")
-    stripe_live_pk: String @doc(description: "Stripe Live Publishable API Key")
-}
-
 type Mutation {
     createPaymentIntent(input: CreateIntentInput!): PaymentIntent
     @doc(description: "Create a payment intent manually")
     @resolver(class: "\\ScandiPWA\\StripeGraphQl\\Model\\Resolver\\CreatePaymentIntent")
     @deprecated(reason: "Payment handling logic has been moved entirely to BE, no need to create payment intent separately.")
+
+    attachNewCard(pm: String): Boolean
+    @doc(description: "Attach Stripe card payment method to a customer")
+    @resolver(class: "\\ScandiPWA\\StripeGraphQl\\Model\\Resolver\\AttachNewCard")
+
+    detachCard(pm: String, last4: String): String
+    @doc(description: "Detach Stripe card payment method from a customer")
+    @resolver(class: "\\ScandiPWA\\StripeGraphQl\\Model\\Resolver\\DetachCard")
 }
 
 input CreateIntentInput {
@@ -17,6 +19,12 @@ input CreateIntentInput {
 
 type PaymentIntent {
     intent_client_secret: String
+}
+
+extend type StoreConfig @doc(description: "The type contains information about a store config") {
+    stripe_mode: String @doc(description: "Stripe Mode, either test or live")
+    stripe_test_pk: String @doc(description: "Stripe Test Publishable API Key")
+    stripe_live_pk: String @doc(description: "Stripe Live Publishable API Key")
 }
 
 input StripePaymentsInput {
