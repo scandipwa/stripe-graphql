@@ -20,7 +20,7 @@ Stripe is implemented via stripe `react-stripe-elements` component. In the check
 3. Require ScaniPWA GraphQL definition extension: `composer require scandipwa/stripe-graphql`
 4. Update the Magento 2 modules: `magento se:up`
 
-**To configure**:
+**To configure** :
 1. Go to https://dashboard.stripe.com/ - signup
 2. Go to *Developer > Api Keys*, copy credentials
 3. Go to *Store > Configuration > Sales > Payment Methods > Stripe* and enter credentials from above
@@ -28,12 +28,14 @@ Stripe is implemented via stripe `react-stripe-elements` component. In the check
 **Manual installation**:
 For manual installation please follow the [Install the module manually](https://stripe.com/docs/plugins/magento/install#manual) guide from Stripe. Please then repeat all steps from the guide hereinbefore!
 
-## Technical details:
+## :construction_worker: Technical details:
 
 Extends the Magento store config to include the publishable Stripe API keys and the current mode. These can be configured in the Magento Admin panel, in Stores > Settings: Configuration > Sales: Payment Methods > Stripe > Basic Settings
+  
+## :warning: Common problems:
+**Namespace** Please ensure you are using the proper namespace. If you have placed the extension in the `app/code` directory, please ensure you have also setup the `ScandiPWA` for `app/code/ScandiPWA`, or change the namespace
 
 Example query:
-
 ```graphql
 query {
   storeConfig {
